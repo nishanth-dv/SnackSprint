@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 // const heading = React.createElement("h1", {id: "heading"}, "Hello from React");
 
 // To create a nested structure like below, the following code is used
