@@ -1,33 +1,57 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// const heading = React.createElement("h1", {id: "heading"}, "Hello from React");
+const HeaderComponent = () => {
+  return (
+    <div className="header">
+      <div className="logo-placeholder">
+        <img
+          className="logo"
+          src="https://media.istockphoto.com/id/1435983029/vector/food-delivery-logo-images.jpg?s=612x612&w=0&k=20&c=HXPxcjOxUiW4pMW1u9E0k2dJYQOU37a_0qZAy3so8fY="
+        />
+      </div>
+      <div className="nav-items">
+        <ul className="">
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-// To create a nested structure like below, the following code is used
+const RestrauntCard = () => {
+  return (
+    <div className="restraunt-card">
+      <img className="restraunt-logo" src="" alt="restraunt-logo" />
+      <h3>{}</h3>
+      <h4>{}</h4>
+      <h4>{}</h4>
+      <h4>{}</h4>
+    </div>
+  );
+};
 
-/******************************* */
+const BodyComponent = () => {
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className="restraunt-container">
+        <RestrauntCard restraunt="Meghana Foods" />
+      </div>
+    </div>
+  );
+};
 
-{
-  /* <div id="parent">
-  <div id="child">
-    <h1>This is H1</h1>
-    <h2>This is H2</h2>
-  </div>
-</div> */
-}
-
-/******************************* */
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "This is H1"),
-    React.createElement("h2", {}, "This is H2"),
-  ])
-);
-
+const App = () => {
+  return (
+    <div className="app">
+      <HeaderComponent />
+    </div>
+  );
+};
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-// root.render(heading);
-
-root.render(parent);
+root.render(<App />);
