@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import RestrauntCard from "./RestrauntCard";
 import ShimmerComponent from "./ShimmerComponent";
+import { DATA_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
+import { useFilterData } from "../customHooks/useFilterData";
 
 let allRestraunts = [];
 const BodyComponent = () => {
@@ -14,14 +17,13 @@ const BodyComponent = () => {
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const response = await fetch(DATA_URL);
     const restrauntData = await response.json();
-    const filteredData = restrauntData?.data?.cards
-      .map((c) => c?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-      .filter((res) => res)
-      .flat();
+    const filteredData = useFilterData(
+      restrauntData?.data?.cards.map(
+        (c) => c?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      )
+    );
     allRestraunts = filteredData;
     setRestrauntList(filteredData);
   };
@@ -54,13 +56,17 @@ const BodyComponent = () => {
       </div>
       <div className="restraunt-container">
         {restrauntList.map((restraunt, index) => (
-          <RestrauntCard
+          <Link
             key={`${restraunt.info.id}${index}`}
-            name={restraunt.info.name}
-            imageInfo={restraunt.info.cloudinaryImageId}
-            cuisines={restraunt.info.cuisines.join(", ")}
-            costForTwo={restraunt.info.costForTwo}
-          />
+            to={`/Restraunt/${restraunt.info.id}`}
+          >
+            <RestrauntCard
+              name={restraunt.info.name}
+              imageInfo={restraunt.info.cloudinaryImageId}
+              cuisines={restraunt.info.cuisines.join(", ")}
+              costForTwo={restraunt.info.costForTwo}
+            />
+          </Link>
         ))}
       </div>
     </div>

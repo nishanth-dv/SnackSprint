@@ -1,6 +1,6 @@
 import { IMAGE_URL } from "../utils/constants";
 
-const RestrauntCard = ({ name, cuisines, costForTwo, imageInfo }) => {
+const MenuCardComponent = ({ name, cuisines, costForTwo, imageInfo }) => {
   return (
     <div className="restraunt-card">
       <img
@@ -15,4 +15,4 @@ const RestrauntCard = ({ name, cuisines, costForTwo, imageInfo }) => {
   );
 };
 
-export default RestrauntCard;
+export default MenuCardComponent;

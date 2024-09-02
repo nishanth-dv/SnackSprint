@@ -48,7 +48,8 @@
 	cursor: pointer;
 }
 
-.shimmer-container {
+.shimmer-container,
+.menu-container {
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -66,4 +67,9 @@
 
 .search-input {
 	margin-right: 10px;
+}
+
+.user-info {
+	padding: 10px;
+	border: "black 1px solid"
 }
