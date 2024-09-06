@@ -5,7 +5,11 @@ const AboutComponent = () => (
   <>
     <div className="about-container">
       <h1>About Me</h1>
-      <UserClassComponent name="Nishanth" city="Bengaluru" contact="nishanth-dv" />
+      <UserClassComponent
+        name="Nishanth"
+        city="Bengaluru"
+        contact="nishanth-dv"
+      />
     </div>
   </>
 );

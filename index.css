@@ -73,3 +73,8 @@
 	padding: 10px;
 	border: "black 1px solid"
 }
+
+.profile-image {
+	height: 200px;
+	width: 200px;
+}

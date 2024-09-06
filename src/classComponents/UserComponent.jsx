@@ -4,27 +4,27 @@ class UserComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating: 5,
+      name: "dummy",
+      login: "dummy-xyz",
     };
   }
+  async componentDidMount() {
+    const response = await fetch("https://api.github.com/users/nishanth-dv");
+
+    const json = await response.json();
+
+    this.setState(json);
+  }
+
   render() {
-    const { name, city, contact } = this.props;
-    const { rating } = this.state;
+    const { name, login, avatar_url } = this.state;
+    const { city } = this.props;
     return (
       <div className="user-info">
+        <img className="profile-image" src={avatar_url} alt="profile-icon" />
         <h2>Name: {name}</h2>
         <h4>City: {city}</h4>
-        <h4>Contact: {contact}</h4>
-        <p>Rating: {rating}</p>
-        <button
-          onClick={() => {
-            this.setState({
-              rating: rating + 1,
-            });
-          }}
-        >
-          Rate
-        </button>
+        <h4>Contact: {login}</h4>
       </div>
     );
   }
