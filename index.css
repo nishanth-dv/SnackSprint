@@ -26,7 +26,7 @@
 
 .restraunt-card {
 	background-color: #f0f0f0;
-	margin: 5px;
+	margin: 7px;
 	width: 200px;
 
 	&:hover {
@@ -41,4 +41,40 @@
 
 .restraunt-logo {
 	width: 100%;
+}
+
+.filter-btn {
+	margin: 10px;
+	cursor: pointer;
+}
+
+.shimmer-container,
+.menu-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.shimmer {
+	background-color: #f0f0f0;
+	margin: 7px;
+	width: 200px;
+	height: 300px;
+}
+
+.filter {
+	display: flex;
+}
+
+.search-input {
+	margin-right: 10px;
+}
+
+.user-info {
+	padding: 10px;
+	border: "black 1px solid"
+}
+
+.profile-image {
+	height: 200px;
+	width: 200px;
 }
