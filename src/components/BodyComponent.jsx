@@ -3,7 +3,7 @@ import RestrauntCard from "./RestrauntCard";
 import ShimmerComponent from "./ShimmerComponent";
 import { DATA_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
-import { useFilterData } from "../customHooks/useFilterData";
+import { useFilterData } from "../utils/customHooks/useFilterData";
 
 let allRestraunts = [];
 const BodyComponent = () => {

@@ -1,4 +1,5 @@
 import React from "react";
+import { USER_URL } from "../utils/constants";
 
 class UserComponent extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class UserComponent extends React.Component {
     };
   }
   async componentDidMount() {
-    const response = await fetch("https://api.github.com/users/nishanth-dv");
+    const response = await fetch(USER_URL);
 
     const json = await response.json();
 

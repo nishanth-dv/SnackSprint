@@ -1,25 +1,13 @@
-import { useEffect, useState } from "react";
-import { MENU_URL } from "../utils/constants";
 import ShimmerComponent from "./ShimmerComponent";
 import { useParams } from "react-router-dom";
-import { useFilterData } from "../customHooks/useFilterData";
+import { useFilterData } from "../utils/customHooks/useFilterData";
+import useFetchRestrauntMenu from "../utils/customHooks/useFetchRestrauntMenu";
 import MenuCardComponent from "./MenuCardComponent";
 
 const RestrauntComponent = () => {
-  const [restrauntMenu, setRestrauntMenu] = useState(null);
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const response = await fetch(`${MENU_URL}${resId}`);
-
-    const menuItems = await response.json();
-
-    setRestrauntMenu(menuItems);
-  };
+  const restrauntMenu = useFetchRestrauntMenu(resId);
 
   if (!restrauntMenu) return <ShimmerComponent />;
 

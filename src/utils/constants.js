@@ -6,4 +6,5 @@ const IMAGE_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 const MENU_URL =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.96340&lng=77.58550&restaurantId=";
-export { LOGO_URL, DATA_URL, IMAGE_URL, MENU_URL };
+const USER_URL = "https://api.github.com/users/nishanth-dv";
+export { LOGO_URL, DATA_URL, IMAGE_URL, MENU_URL, USER_URL };

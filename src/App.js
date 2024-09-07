@@ -1,12 +1,16 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from "./components/HeaderComponent";
-import BodyComponent from "./components/BodyComponent";
-import AboutComponent from "./components/AboutComponent";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import ContactComponent from "./components/ContactComponent";
 import ErrorComponent from "./components/ErrorComponent";
-import RestrauntComponent from "./components/RestrauntComponent";
+import ShimmerComponent from "./components/ShimmerComponent";
+
+const BodyComponent = lazy(() => import("./components/BodyComponent"));
+const AboutComponent = lazy(() => import("./components/AboutComponent"));
+const ContactComponent = lazy(() => import("./components/ContactComponent"));
+const RestrauntComponent = lazy(() =>
+  import("./components/RestrauntComponent")
+);
 
 const App = () => {
   return (
@@ -24,19 +28,35 @@ const appRoutes = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <BodyComponent />,
+        element: (
+          <Suspense fallback={<ShimmerComponent />}>
+            <BodyComponent />
+          </Suspense>
+        ),
       },
       {
         path: "/About",
-        element: <AboutComponent />,
+        element: (
+          <Suspense fallback="Loading...">
+            <AboutComponent />
+          </Suspense>
+        ),
       },
       {
         path: "/Contact",
-        element: <ContactComponent />,
+        element: (
+          <Suspense fallback="Loading...">
+            <ContactComponent />
+          </Suspense>
+        ),
       },
       {
         path: "/Restraunt/:resId",
-        element: <RestrauntComponent />,
+        element: (
+          <Suspense fallback={<ShimmerComponent />}>
+            <RestrauntComponent />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <ErrorComponent />,
