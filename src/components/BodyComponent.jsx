@@ -44,17 +44,25 @@ const BodyComponent = () => {
   if (restrauntList.length === 0) return <ShimmerComponent />;
 
   return (
-    <div className="body">
-      <div className="filter">
-        <div className="search">
-          <input type="text" className="search-input" />
-          <button>Search</button>
+    <div>
+      <div className="flex justify-center">
+        <div>
+          <input
+            type="text"
+            className="border border-solid border-gray-400 p-1 m-4 rounded-md"
+          />
+          <button className="px-4 py-1 bg-orange-400 rounded-md text-white hover:bg-orange-500">
+            Search
+          </button>
+          <button
+            className="px-4 py-1 ml-4 bg-gray-500 hover:bg-gray-600 rounded-md text-white"
+            onClick={filterRestraunts}
+          >
+            {filterButtonMessage}
+          </button>
         </div>
-        <button className="filter-btn" onClick={filterRestraunts}>
-          {filterButtonMessage}
-        </button>
       </div>
-      <div className="restraunt-container">
+      <div className="flex flex-wrap justify-center">
         {restrauntList.map((restraunt, index) => (
           <Link
             key={`${restraunt.info.id}${index}`}
@@ -63,7 +71,7 @@ const BodyComponent = () => {
             <RestrauntCard
               name={restraunt.info.name}
               imageInfo={restraunt.info.cloudinaryImageId}
-              cuisines={restraunt.info.cuisines.join(", ")}
+              cuisines={restraunt.info.cuisines.slice(0, 3)}
               costForTwo={restraunt.info.costForTwo}
             />
           </Link>

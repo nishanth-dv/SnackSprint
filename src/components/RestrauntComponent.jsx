@@ -9,7 +9,7 @@ const RestrauntComponent = () => {
 
   const restrauntMenu = useFetchRestrauntMenu(resId);
 
-  if (!restrauntMenu) return <ShimmerComponent />;
+  if (!restrauntMenu) return <ShimmerComponent from="menu" />;
 
   const { name } = restrauntMenu.data.cards[2].card.card.info;
 
@@ -20,20 +20,21 @@ const RestrauntComponent = () => {
   );
 
   return (
-    <div className="name">
-      <h1>{name}</h1>
-      <h2>Menu</h2>
-      <ul className="menu-container">
+    <div className="p-12">
+      <h1 className="text-orange-600 text-4xl font-semibold">{name}</h1>
+      <h2 className="text-gray-500 mt-5 text-2xl font-[cursive]">Menu</h2>
+      <ul className="flex flex-wrap flex-col px-[10%]">
         {itemCards?.map((item) => (
-          <MenuCardComponent
-            key={item.card.info.id}
-            name={item.card.info.name}
-            imageInfo={item.card.info.imageId}
-            cuisines={item.card.info.category}
-            costForTwo={
-              item.card.info.defaultPrice / 100 || item.card.info.price
-            }
-          />
+          <li key={item.card.info.id}>
+            <MenuCardComponent
+              name={item.card.info.name}
+              imageInfo={item.card.info.imageId}
+              cuisines={item.card.info.category}
+              costForTwo={
+                item.card.info.defaultPrice / 100 || item.card.info.price
+              }
+            />
+          </li>
         ))}
       </ul>
     </div>
