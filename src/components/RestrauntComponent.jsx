@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useFilterData } from "../utils/customHooks/useFilterData";
 import useFetchRestrauntMenu from "../utils/customHooks/useFetchRestrauntMenu";
 import MenuCardComponent from "./MenuCardComponent";
+import Scrollbars from "react-custom-scrollbars";
 
 const RestrauntComponent = () => {
   const { resId } = useParams();
@@ -23,20 +24,22 @@ const RestrauntComponent = () => {
     <div className="p-12">
       <h1 className="text-orange-600 text-4xl font-semibold">{name}</h1>
       <h2 className="text-gray-500 mt-5 text-2xl font-[cursive]">Menu</h2>
-      <ul className="flex flex-wrap flex-col px-[10%]">
-        {itemCards?.map((item) => (
-          <li key={item.card.info.id}>
-            <MenuCardComponent
-              name={item.card.info.name}
-              imageInfo={item.card.info.imageId}
-              cuisines={item.card.info.category}
-              costForTwo={
-                item.card.info.defaultPrice / 100 || item.card.info.price
-              }
-            />
-          </li>
-        ))}
-      </ul>
+      <Scrollbars style={{ height: "calc(100vh - 380px)", width: "100%" }}>
+        <ul className="flex flex-wrap flex-col px-[10%]">
+          {itemCards?.map((item) => (
+            <li key={item.card.info.id}>
+              <MenuCardComponent
+                name={item.card.info.name}
+                imageInfo={item.card.info.imageId}
+                cuisines={item.card.info.category}
+                costForTwo={
+                  item.card.info.defaultPrice / 100 || item.card.info.price
+                }
+              />
+            </li>
+          ))}
+        </ul>
+      </Scrollbars>
     </div>
   );
 };

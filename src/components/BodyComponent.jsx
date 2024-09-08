@@ -4,6 +4,7 @@ import ShimmerComponent from "./ShimmerComponent";
 import { DATA_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import { useFilterData } from "../utils/customHooks/useFilterData";
+import { Scrollbars } from "react-custom-scrollbars";
 
 let allRestraunts = [];
 const BodyComponent = () => {
@@ -62,21 +63,23 @@ const BodyComponent = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap justify-center">
-        {restrauntList.map((restraunt, index) => (
-          <Link
-            key={`${restraunt.info.id}${index}`}
-            to={`/Restraunt/${restraunt.info.id}`}
-          >
-            <RestrauntCard
-              name={restraunt.info.name}
-              imageInfo={restraunt.info.cloudinaryImageId}
-              cuisines={restraunt.info.cuisines.slice(0, 3)}
-              costForTwo={restraunt.info.costForTwo}
-            />
-          </Link>
-        ))}
-      </div>
+      <Scrollbars style={{ height: "calc(100vh - 250px)", width: "100%" }}>
+        <div className="flex flex-wrap justify-center">
+          {restrauntList.map((restraunt, index) => (
+            <Link
+              key={`${restraunt.info.id}${index}`}
+              to={`/Restraunt/${restraunt.info.id}`}
+            >
+              <RestrauntCard
+                name={restraunt.info.name}
+                imageInfo={restraunt.info.cloudinaryImageId}
+                cuisines={restraunt.info.cuisines.slice(0, 3)}
+                costForTwo={restraunt.info.costForTwo}
+              />
+            </Link>
+          ))}{" "}
+        </div>
+      </Scrollbars>
     </div>
   );
 };
