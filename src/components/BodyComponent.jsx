@@ -5,6 +5,7 @@ import { DATA_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import { useFilterData } from "../utils/customHooks/useFilterData";
 import { Scrollbars } from "react-custom-scrollbars";
+import { promotedRestraunt } from "../HOC/RestrauntCardPromoted";
 
 let allRestraunts = [];
 const BodyComponent = () => {
@@ -12,6 +13,7 @@ const BodyComponent = () => {
     "Top Rated Restraunts"
   );
   const [restrauntList, setRestrauntList] = useState([]);
+  const RestrauntCardPromoted = promotedRestraunt(RestrauntCard);
 
   useEffect(() => {
     fetchData();
@@ -26,6 +28,7 @@ const BodyComponent = () => {
       )
     );
     allRestraunts = filteredData;
+    console.log(allRestraunts);
     setRestrauntList(filteredData);
   };
 
@@ -70,14 +73,23 @@ const BodyComponent = () => {
               key={`${restraunt.info.id}${index}`}
               to={`/Restraunt/${restraunt.info.id}`}
             >
-              <RestrauntCard
-                name={restraunt.info.name}
-                imageInfo={restraunt.info.cloudinaryImageId}
-                cuisines={restraunt.info.cuisines.slice(0, 3)}
-                costForTwo={restraunt.info.costForTwo}
-              />
+              {restraunt.info.avgRating > 4.5 ? (
+                <RestrauntCardPromoted
+                  name={restraunt.info.name}
+                  imageInfo={restraunt.info.cloudinaryImageId}
+                  cuisines={restraunt.info.cuisines.slice(0, 3)}
+                  costForTwo={restraunt.info.costForTwo}
+                />
+              ) : (
+                <RestrauntCard
+                  name={restraunt.info.name}
+                  imageInfo={restraunt.info.cloudinaryImageId}
+                  cuisines={restraunt.info.cuisines.slice(0, 3)}
+                  costForTwo={restraunt.info.costForTwo}
+                />
+              )}
             </Link>
-          ))}{" "}
+          ))}
         </div>
       </Scrollbars>
     </div>

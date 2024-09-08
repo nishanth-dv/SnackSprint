@@ -1,12 +1,14 @@
+import { useState } from "react";
 import ShimmerComponent from "./ShimmerComponent";
-import { useParams } from "react-router-dom";
-import { useFilterData } from "../utils/customHooks/useFilterData";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetchRestrauntMenu from "../utils/customHooks/useFetchRestrauntMenu";
-import MenuCardComponent from "./MenuCardComponent";
+import CategoryComponent from "./CategoryComponent";
 import Scrollbars from "react-custom-scrollbars";
 
 const RestrauntComponent = () => {
   const { resId } = useParams();
+  const navigate = useNavigate();
+  const [showIndex, setShowIndex] = useState(null);
 
   const restrauntMenu = useFetchRestrauntMenu(resId);
 
@@ -14,27 +16,48 @@ const RestrauntComponent = () => {
 
   const { name } = restrauntMenu.data.cards[2].card.card.info;
 
-  const itemCards = useFilterData(
-    restrauntMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.map(
-      (c) => c?.card?.card.itemCards
-    )
-  );
+  const categories =
+    restrauntMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+
+  const backToHomePage = () => {
+    navigate("/");
+  };
 
   return (
-    <div className="p-12">
-      <h1 className="text-orange-600 text-4xl font-semibold">{name}</h1>
-      <h2 className="text-gray-500 mt-5 text-2xl font-[cursive]">Menu</h2>
-      <Scrollbars style={{ height: "calc(100vh - 380px)", width: "100%" }}>
+    <div className="px-12 py-6">
+      <div className="flex">
+        <div
+          className="flex items-center cursor-pointer mb-12"
+          onClick={backToHomePage}
+        >
+          <p>
+            <i className="fa-solid fa-backward my-auto text-2xl" />
+          </p>
+          <p className="ml-3 font-[cursive] text-lg">
+            Back to other Restraunts
+          </p>
+        </div>
+        <div className="text-center ml-[25%]">
+          <h1 className="text-orange-600 text-4xl font-bold font-[cursive]">
+            {name}
+          </h1>
+          <h2 className="text-gray-500 mt-2 text-2xl font-[cursive]">Menu</h2>
+        </div>
+      </div>
+      <Scrollbars style={{ height: "calc(100vh - 350px)", width: "100%" }}>
         <ul className="flex flex-wrap flex-col px-[10%]">
-          {itemCards?.map((item) => (
-            <li key={item.card.info.id}>
-              <MenuCardComponent
-                name={item.card.info.name}
-                imageInfo={item.card.info.imageId}
-                cuisines={item.card.info.category}
-                costForTwo={
-                  item.card.info.defaultPrice / 100 || item.card.info.price
-                }
+          {categories?.map((item, index) => (
+            <li key={item?.card?.card?.title}>
+              <CategoryComponent
+                info={item?.card?.card}
+                showItem={index === showIndex}
+                setShowIndex={() => {
+                  setShowIndex(showIndex === index ? null : index);
+                }}
               />
             </li>
           ))}
