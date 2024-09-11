@@ -4,7 +4,9 @@ import ReactDOM from "react-dom/client";
 import HeaderComponent from "./components/HeaderComponent";
 import ErrorComponent from "./components/ErrorComponent";
 import ShimmerComponent from "./components/ShimmerComponent";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const BodyComponent = lazy(() => import("./components/BodyComponent"));
 const AboutComponent = lazy(() => import("./components/AboutComponent"));
@@ -15,10 +17,12 @@ const RestrauntComponent = lazy(() =>
 
 const App = () => {
   return (
-    <div className="app">
-      <HeaderComponent />
-      <Outlet />
-    </div>
+    <Provider store={store}>
+      <div className="app">
+        <HeaderComponent />
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 

@@ -28,7 +28,6 @@ const BodyComponent = () => {
       )
     );
     allRestraunts = filteredData;
-    console.log(allRestraunts);
     setRestrauntList(filteredData);
   };
 

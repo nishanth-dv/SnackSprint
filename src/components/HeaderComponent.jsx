@@ -1,9 +1,11 @@
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/customHooks/useOnlineStatus";
+import { useSelector } from "react-redux";
 
 const HeaderComponent = () => {
   const isOnline = useOnlineStatus();
+  const cartItems = useSelector((store) => store.cart.items);
   return (
     <div className="flex justify-between bg-orange-600 shadow-lg">
       <div className="logo-placeholder">
@@ -22,7 +24,10 @@ const HeaderComponent = () => {
               <li className="px-5 hover:text-gray-500">
                 <Link to="/contact">Contact</Link>
               </li>
-              <li className="px-5 hover:text-gray-500">Cart</li>
+              <li className="px-5 hover:text-gray-500">
+                <i className="fa-solid fa-cart-shopping" />
+                <span className="p-2">{cartItems.length}</span>
+              </li>
             </>
           )}
           <li className="px-5 text-lg text-[aliceblue] font-[cursive]">
