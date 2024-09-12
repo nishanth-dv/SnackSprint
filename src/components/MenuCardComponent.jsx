@@ -1,4 +1,6 @@
 import { IMAGE_URL } from "../utils/constants";
+import { addItem } from "../utils/redux/store-slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 const MenuCardComponent = ({
   name,
@@ -7,6 +9,11 @@ const MenuCardComponent = ({
   imageInfo,
   description,
 }) => {
+  const dispatch = useDispatch();
+  const handleAdd = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
     <div className="p-4 mx-4 my-3 w-[100%] h-28 bg-gray-200 flex items-center rounded-lg shadow-lg">
       <img
@@ -24,8 +31,13 @@ const MenuCardComponent = ({
         </p>
       </div>
       <div className="ml-auto flex justify-between items-center p-4">
-        <i className="fa-solid fa-plus text-gray-700 cursor-pointer" />
-        <button className="p-2 mx-2 bg-slate-500 text-gray-800 rounded-lg font-bold font-[cursive]">Add</button>
+        <i
+          className="fa-solid fa-plus text-gray-700 cursor-pointer"
+          onClick={() => handleAdd(name)}
+        />
+        <button className="p-2 mx-2 bg-slate-500 text-gray-300 rounded-lg font-bold font-[cursive]">
+          Add
+        </button>
         <i className="fa-solid fa-minus text-gray-700 cursor-pointer" />
       </div>
     </div>
