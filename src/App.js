@@ -5,7 +5,7 @@ import HeaderComponent from "./components/HeaderComponent";
 import ErrorComponent from "./components/ErrorComponent";
 import ShimmerComponent from "./components/ShimmerComponent";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store from "./utils/redux/store";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const BodyComponent = lazy(() => import("./components/BodyComponent"));

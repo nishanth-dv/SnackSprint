@@ -23,14 +23,14 @@ const ModalComponent = forwardRef((props, ref) => {
   return (
     <dialog
       id="modal-dialog"
-      class="p-6 bg-gray-300 rounded-lg shadow-lg w-2/4 h-2/4"
+      className="p-6 bg-gray-300 rounded-lg shadow-lg w-2/4 h-2/4"
       ref={modalRef}
     >
       <div className="flex justify-between items-center font-[cursive] mb-4">
-        <h2 class="text-2xl font-semibold text-gray-800" onClick={handleClose}>
+        <h2 className="text-2xl font-semibold text-gray-800" onClick={handleClose}>
           Cart
         </h2>
-        <i class="fa-solid fa-x text-lg" />
+        <i className="fa-solid fa-x text-lg" />
       </div>
       <Scrollbars style={{ height: "100vh - 100px", width: "100%" }}>
         <ul>
