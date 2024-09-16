@@ -14,7 +14,7 @@ const RestrauntComponent = () => {
 
   if (!restrauntMenu) return <ShimmerComponent from="menu" />;
 
-  const { name } = restrauntMenu.data.cards[2].card.card.info;
+  const { name } = restrauntMenu.data.cards[2].card.card.info || "Loading...";
 
   const categories =
     restrauntMenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(

@@ -15,7 +15,10 @@ const MenuCardComponent = ({
   };
 
   return (
-    <div className="p-4 mx-4 my-3 w-[100%] h-28 bg-gray-200 flex items-center rounded-lg shadow-lg">
+    <div
+      data-testid="food-items"
+      className="p-4 mx-4 my-3 w-[100%] h-28 bg-gray-200 flex items-center rounded-lg shadow-lg"
+    >
       <img
         className="w-[10%] h-10% p-[1%] object-contain rounded-[25px]"
         src={`${IMAGE_URL}/${imageInfo}`}
@@ -35,7 +38,10 @@ const MenuCardComponent = ({
           className="fa-solid fa-plus text-gray-700 cursor-pointer"
           onClick={() => handleAdd(name)}
         />
-        <button className="p-2 mx-2 bg-slate-500 text-gray-300 rounded-lg font-bold font-[cursive]">
+        <button
+          className="p-2 mx-2 bg-slate-500 text-gray-300 rounded-lg font-bold font-[cursive]"
+          onClick={() => handleAdd(name)}
+        >
           Add
         </button>
         <i className="fa-solid fa-minus text-gray-700 cursor-pointer" />

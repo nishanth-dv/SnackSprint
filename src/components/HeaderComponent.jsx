@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { LOGO_URL } from "../utils/constants";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useOnlineStatus from "../utils/customHooks/useOnlineStatus";
 import { useSelector } from "react-redux";
 import ModalComponent from "./ModalComponent";
@@ -24,7 +24,14 @@ const HeaderComponent = () => {
             {isOnline && (
               <>
                 <li className="px-5 hover:text-gray-500">
-                  <Link to="/">Home</Link>
+                  <NavLink
+                    className={(isActive) =>
+                      isActive ? "text-orange-900" : undefined
+                    }
+                    to="/"
+                  >
+                    Home
+                  </NavLink>
                 </li>
                 <li className="px-5 hover:text-gray-500">
                   <Link to="/about">About Us</Link>
