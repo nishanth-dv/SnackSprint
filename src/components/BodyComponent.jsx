@@ -62,6 +62,7 @@ const BodyComponent = () => {
         <div>
           <input
             type="text"
+            placeholder="Search Restraunts"
             data-testid="search-input"
             className="border border-solid border-gray-400 p-1 m-4 rounded-md pl-1"
             onChange={(event) => {

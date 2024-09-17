@@ -27,10 +27,16 @@ const ModalComponent = forwardRef((props, ref) => {
       ref={modalRef}
     >
       <div className="flex justify-between items-center font-[cursive] mb-4">
-        <h2 className="text-2xl font-semibold text-gray-800" onClick={handleClose}>
+        <h2
+          className="text-2xl font-semibold text-gray-800"
+          onClick={handleClose}
+        >
           Cart
         </h2>
-        <i className="fa-solid fa-x text-lg" />
+        <i
+          className="fa-solid fa-x text-lg cursor-pointer"
+          onClick={handleClose}
+        />
       </div>
       <Scrollbars style={{ height: "100vh - 100px", width: "100%" }}>
         <ul>
