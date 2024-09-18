@@ -48,7 +48,7 @@ const RestrauntComponent = () => {
           <h2 className="text-gray-500 mt-2 text-2xl font-[cursive]">Menu</h2>
         </div>
       </div>
-      <Scrollbars style={{ height: "calc(100vh - 350px)", width: "100%" }}>
+      <Scrollbars style={{ height: "calc(100vh - 290px)", width: "100%" }}>
         <ul className="flex flex-wrap flex-col px-[10%]">
           {categories?.map((item, index) => (
             <li key={item?.card?.card?.title}>
